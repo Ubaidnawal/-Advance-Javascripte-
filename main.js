@@ -1,51 +1,74 @@
-// 
+ 
+//  call back function  call back hall
+ 
+ 
+ function login(user, callback) {
+    setTimeout(() => {
+        console.log(`${user}logged in `);
+        callback();
+    }, 2000);
+}
 
-class Employee {
-    #salary
-    constructor(id, name, age, salary) {
-        this.id = id,
-            this.name = name,
-            this.age = age,
-            this.#salary = salary
-
-    }
-    print() {
-        console.log(`${this.id},
- ${this.name},
-  ${this.age},
-   ${this.#salary}
-
-`);
-
-    }
-
+function selectRestaurant(callback) {
+    setTimeout(() => {
+        console.log("restaurant select");
+        callback();
+    }, 1000);
 }
 
 
-
-
-class Department extends Employee {
-
-    #dept_name
-    constructor(id, name, age, salary, dname, dhod) {
-        super(id, name, age, salary);
-        this.#dept_name = dname;
-        this._had = dhod;
-
-
-    }
-    print() {
-
-        super.print();
-        return `${this.#dept_name}-${this._dhad}`;
-
-    }
-
+function placeOrder(callback) {
+    setTimeout(() => {
+        console.log("place order");
+        callback();
+    }, 1000);
 }
 
 
+function makepayment(callback) {
+    setTimeout(() => {
+        console.log("payment successful");
+        callback();
+    }, 1000);
+}
 
-let emp1 = new Employee(1, "abc", 20, 1010);
-let dept2 = new Department(2, "hamza", 45, 78000, 'IT', 'Ubaid');
-console.log(dept2.print());
-console.log(emp1);
+
+function confrimDelivered() {
+    setTimeout(() => {
+        console.log("food delivered  successful");
+        callback();
+    }, 1000);
+}
+
+
+login("ali", () => {
+    selectRestaurant(() => {
+        placeOrder(() => {
+            makepayment(() => {
+                confrimDelivered(); 
+
+
+                });
+            });
+        });
+    });
+
+
+// promsie
+
+let promise = new Promise ( ( resovle) => {
+let wifi = true;
+
+if(wifi){
+    resovle("wife is ON ");
+}else {
+reject("wife is OFF");
+}
+});
+
+// prosime handling - changing
+promise.then((result) =>{
+console.log(result);
+}).catch((e) =>{
+console.log(e);
+});
